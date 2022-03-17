@@ -1,0 +1,2 @@
+docker build -t anubisworks-postfix .
+docker run -d --name mailserver -p 25:25 -p 143:143 -p 465:465 -p 587:587 -p 993:993 -p 4190:4190 -e FQDN="mail.anubisworks.net" -e RELAY_NETWORKS="10.0.0.0/8" -e DOMAIN="anubisworks.eu" -e RECIPIENT_DELIMITER="+" -e DESTINATION_SMTP="mail.anubisworks.local" -e DESTINATION_SMTP_IP="10.200.200.230" -e ADD_DOMAINS="anubisworks.net,anubisworks.pl" -v /opt/nginx/config/etc/letsencrypt/archive/anubisworks.eu:/ssl:ro --restart unless-stopped anubisworks-postfix
